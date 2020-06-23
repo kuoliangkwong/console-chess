@@ -4,6 +4,10 @@ using System.Text;
 
 static class ArrayExt
 {
+    public static T SafeGetValue<T>(this T[,] array, Vector2Int p)
+    {
+        return SafeGetValue(array, p.X, p.Y);
+    }
     public static T SafeGetValue<T>(this T[,] array, int x, int y)
     {
         try

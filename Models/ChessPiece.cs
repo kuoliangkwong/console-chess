@@ -18,12 +18,15 @@ abstract class ChessPiece: IChessRule
         }
     }
 
+    public bool hasMoved;
+
     protected List<IMoveRule> moveRules;
 
     protected ChessPiece(Color color)
     {
         this.Color = color;
         moveRules = new List<IMoveRule>();
+        hasMoved = false;
     }
 
     public virtual bool CheckValidMove(Vector2Int src, Vector2Int dst, Board board)
