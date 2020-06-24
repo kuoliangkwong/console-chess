@@ -46,32 +46,37 @@ public struct Vector2Int
         Y = v.Y;
     }
 
-    public void Substract(int x, int y)
+    public Vector2Int Substract(int x, int y)
     {
         X -= x;
         Y -= y;
+        return this;
     }
 
-    public void Add(int x, int y)
+    public Vector2Int Add(int x, int y)
     {
         X += x;
         Y += y;
+        return this;
     }
 
-    public void Set(Vector2Int value)
+    public Vector2Int Add(Vector2Int v)
+    {
+        Add(v.X, v.Y);
+        return this;
+    }
+
+    public Vector2Int Set(Vector2Int value)
     {
         Set(value.X, value.Y);
+        return this;
     }
 
-    public void Set(int x, int y)
+    public Vector2Int Set(int x, int y)
     {
         X = x;
         Y = y;
-    }
-
-    public void Add(Vector2Int v)
-    {
-        Add(v.X, v.Y);
+        return this;
     }
 
     public Vector2Int Abs()

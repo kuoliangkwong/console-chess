@@ -59,6 +59,32 @@ namespace console_chess_unit_test
         }
 
         [TestMethod]
+        public void TestCheckByKnightGame()
+        {
+            var moves = new string[]
+            {
+                "b1 c3",
+                "e7 e5",
+                "a2 a4",
+                "e8 e7",
+                "c3 d5",
+            };
+            var game = new Game();
+            Color? winner = null;
+            string message = null;
+            foreach (var move in moves)
+            {
+                var vecStr = move.Split(" ");
+                var (player, msg) = game.Move(vecStr[0], vecStr[1]);
+                winner = player;
+                message = msg;
+                game.NextTurn();
+            }
+            Assert.AreEqual(null, winner);
+            Assert.AreEqual("Check!!", message);
+        }
+
+        [TestMethod]
         public void TestWinGame()
         {
             var moves = new string[]

@@ -30,7 +30,8 @@
 
         foreach (var lMovePos in lMovePostions)
         {
-            var (foundThreat, piece) = FindThreatPiece(player, lMovePos, origin, board);
+            var currPos = Vector2Int.Add(origin, lMovePos);
+            var (foundThreat, piece) = FindThreatPiece(player, currPos, origin, board);
             if (piece != null && foundThreat) return piece;
         }
 
