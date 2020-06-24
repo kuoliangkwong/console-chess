@@ -7,6 +7,8 @@ public class DiagonalMoveRule : IMoveRule
 {
     readonly int maxStep = 0;
 
+    public DiagonalMoveRule() { }
+
     public DiagonalMoveRule(int maxStep)
     {
         this.maxStep = maxStep;

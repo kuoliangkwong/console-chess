@@ -7,6 +7,8 @@ public class StraightMoveRule : IMoveRule
 {
     readonly int maxStep = 0;
 
+    public StraightMoveRule() { }
+
     public StraightMoveRule(int maxStep)
     {
         this.maxStep = maxStep;
