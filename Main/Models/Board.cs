@@ -75,7 +75,7 @@ public class Board
         }
     }
 
-    public Color? Move(Color player, Vector2Int src, Vector2Int dst)
+    public (Color?, string) Move(Color player, Vector2Int src, Vector2Int dst)
     {
         var srcPiece = Occupants.SafeGetValue(src.X, src.Y);
         var dstPiece = Occupants.SafeGetValue(dst.X, dst.Y);
@@ -91,9 +91,69 @@ public class Board
 
         if (dstPiece is King)
         {
-            return player;
+            return (player, null);
         }
 
-        return null;
+        var opponent = player == Color.White ? Color.Black : Color.White;
+        var (checkmate, kingInCheck) = KingState(opponent);
+
+        if (checkmate) return (player, "Checkmate!!");
+
+        if (kingInCheck) return (null, "Check!!");
+
+        return (null, null);
+    }
+
+    public static bool IsWithinBound(Vector2Int origin)
+    {
+        return origin.X >= 0 && origin.X < 8 && origin.Y >= 0 && origin.Y < 8;
+    }
+
+    public Vector2Int[] AvailableMoveAroundLocations(Vector2Int origin)
+    {
+        var moveDirs = Direction.MOVE_DIRECTIONS;
+        var result = new List<Vector2Int>();
+
+        foreach(var dir in moveDirs)
+        {
+            var pos = Vector2Int.Add(origin, dir);
+            if (!IsWithinBound(pos)) continue;
+            var piece = Occupants.SafeGetValue(pos);
+            if (piece == null)
+            {
+                result.Add(pos);
+            }
+        }
+        
+        return result.ToArray();
+    }
+
+    public Vector2Int FindKingPosition(Color color)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                var piece = Occupants.SafeGetValue(i, j);
+                if (piece != null && piece.Color == color && piece is King)
+                {
+                    return new Vector2Int(i, j);
+                }
+            }
+        }
+        throw new Exception("Cannot find King");
+    }
+
+    public (bool, bool) KingState(Color color)
+    {
+        var kingPos = FindKingPosition(color);
+        var availablePositions = AvailableMoveAroundLocations(kingPos);
+        var isKingChecked = Threat.FindPiece(color, kingPos, this) != null;
+        var isAroundInThreat = true;
+        foreach (var pos in availablePositions)
+        {
+            isAroundInThreat = isAroundInThreat && Threat.FindPiece(color, pos, this) != null;
+        }
+        return (isKingChecked && isAroundInThreat, isKingChecked);
     }
 }

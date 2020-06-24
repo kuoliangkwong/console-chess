@@ -58,6 +58,17 @@ public struct Vector2Int
         Y += y;
     }
 
+    public void Set(Vector2Int value)
+    {
+        Set(value.X, value.Y);
+    }
+
+    public void Set(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
     public void Add(Vector2Int v)
     {
         Add(v.X, v.Y);
@@ -101,6 +112,14 @@ public struct Vector2Int
         return new Vector2Int(
             left.X - right.X,
             left.Y - right.Y
+        );
+    }
+
+    public static Vector2Int Add(Vector2Int left, Vector2Int right)
+    {
+        return new Vector2Int(
+            left.X + right.X,
+            left.Y + right.Y
         );
     }
 

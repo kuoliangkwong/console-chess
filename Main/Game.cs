@@ -6,11 +6,14 @@ using System.Text;
 public class Game
 {
     int turnIndex;
-    Board board;
+    public Board Board
+    {
+        get; private set;
+    }
 
     public Game()
     {
-        board = new Board();
+        Board = new Board();
         Reset();
     }
 
@@ -24,11 +27,11 @@ public class Game
 
     public void Reset()
     {
-        board.Reset();
+        Board.Reset();
         turnIndex = 0;
     }
 
-    public Color? Move(string srcStr, string dstStr)
+    public (Color?, string) Move(string srcStr, string dstStr)
     {
         if (!Input.IsValidString(srcStr, dstStr)) throw new Exception("Invalid input");
 
@@ -38,7 +41,7 @@ public class Game
         srcVector.Substract(1, 1);
         dstVector.Substract(1, 1);
 
-        return board.Move(
+        return Board.Move(
             CurrentTurn,
             srcVector,
             dstVector

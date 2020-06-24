@@ -11,7 +11,7 @@ public class GeneralRule : IMoveRule
 
         if (srcPiece == null) return false;
 
-        if (dst.X < 0 || dst.X > 7 || dst.Y < 0 || dst.Y > 7) return false;
+        if (!Board.IsWithinBound(dst)) return false;
 
         if (dstPiece != null && dstPiece.Color == srcPiece.Color) return false;
 
