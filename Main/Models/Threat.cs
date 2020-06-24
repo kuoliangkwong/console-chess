@@ -3,7 +3,6 @@
     public static ChessPiece FindPiece(Color player, Vector2Int origin, Board board)
     {
         var moveDirs = Direction.MOVE_DIRECTIONS;
-
         foreach(var moveDir in moveDirs)
         {
             var currPos = new Vector2Int(origin);
@@ -16,18 +15,7 @@
             }
         }
 
-        var lMovePostions = new Vector2Int[]
-        {
-            new Vector2Int(1, 2),
-            new Vector2Int(2, 1),
-            new Vector2Int(2, -1),
-            new Vector2Int(1, -2),
-            new Vector2Int(-1, -2),
-            new Vector2Int(-2, -1),
-            new Vector2Int(-2, 1),
-            new Vector2Int(-1, 2),
-        };
-
+        var lMovePostions = Direction.L_MOVE_DIRECTIONS;
         foreach (var lMovePos in lMovePostions)
         {
             var currPos = Vector2Int.Add(origin, lMovePos);
