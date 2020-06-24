@@ -5,13 +5,13 @@ using System.Text;
 
 public class Game
 {
-    int turnIndex = 0;
+    int turnIndex;
     Board board;
 
     public Game()
     {
         board = new Board();
-        board.Reset();
+        Reset();
     }
 
     public string CurrentPlayerName 
@@ -32,7 +32,8 @@ public class Game
 
     public void Reset()
     {
-
+        board.Reset();
+        turnIndex = 0;
     }
 
     public string? Move(string srcStr, string dstStr)

@@ -29,7 +29,49 @@ public class Board
     
     public void Reset()
     {
-        
+        var whiteElites = new ChessPiece[]
+        {
+            new Rook(Color.White),
+            new Knight(Color.White),
+            new Bishop(Color.White),
+            new King(Color.White),
+            new Queen(Color.White),
+            new Bishop(Color.White),
+            new Knight(Color.White),
+            new Rook(Color.White)
+        };
+
+        for (int x = 0; x < 8; x++)
+        {
+            occupants[x, 0] = whiteElites[x];
+        }
+
+        for (int x = 0; x < 8; x++)
+        {
+            occupants[x, 1] = new Pawn(Color.White);
+        }
+
+        var blackElites = new ChessPiece[]
+        {
+            new Rook(Color.Black),
+            new Knight(Color.Black),
+            new Bishop(Color.Black),
+            new King(Color.Black),
+            new Queen(Color.Black),
+            new Bishop(Color.Black),
+            new Knight(Color.Black),
+            new Rook(Color.Black)
+        };
+
+        for (int x = 0; x < 8; x++)
+        {
+            occupants[x, 7] = blackElites[x];
+        }
+
+        for (int x = 0; x < 8; x++)
+        {
+            occupants[x, 6] = new Pawn(Color.Black);
+        }
     }
 
     public Color? Move(Color player, Vector2Int src, Vector2Int dst)

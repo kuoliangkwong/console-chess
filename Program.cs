@@ -16,7 +16,15 @@ class Program
             var dst = Console.ReadLine();
 
             try {
-                game.Move(src, dst);
+                var winnerName = game.Move(src, dst);
+                if (winnerName != null)
+                {
+                    Console.WriteLine($"{winnerName} wins!!");
+                    Console.Write("Press enter to play again.");
+                    Console.ReadLine();
+                    game.Reset();
+                    continue;
+                }
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
