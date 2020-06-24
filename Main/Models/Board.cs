@@ -19,16 +19,17 @@ public class Board
 
     public ChessPiece[,] Occupants
     {
-        get
-        {
-            return occupants;
-        }
+        get; private set;
     }
 
-    ChessPiece[,] occupants = new ChessPiece[8, 8];
+    public Board()
+    {
+        Occupants = new ChessPiece[8, 8];
+    }
     
     public void Reset()
     {
+        Occupants = new ChessPiece[8, 8];
         var whiteElites = new ChessPiece[]
         {
             new Rook(Color.White),
@@ -43,12 +44,12 @@ public class Board
 
         for (int x = 0; x < 8; x++)
         {
-            occupants[x, 0] = whiteElites[x];
+            Occupants[x, 0] = whiteElites[x];
         }
 
         for (int x = 0; x < 8; x++)
         {
-            occupants[x, 1] = new Pawn(Color.White);
+            Occupants[x, 1] = new Pawn(Color.White);
         }
 
         var blackElites = new ChessPiece[]
@@ -65,19 +66,19 @@ public class Board
 
         for (int x = 0; x < 8; x++)
         {
-            occupants[x, 7] = blackElites[x];
+            Occupants[x, 7] = blackElites[x];
         }
 
         for (int x = 0; x < 8; x++)
         {
-            occupants[x, 6] = new Pawn(Color.Black);
+            Occupants[x, 6] = new Pawn(Color.Black);
         }
     }
 
     public Color? Move(Color player, Vector2Int src, Vector2Int dst)
     {
-        var srcPiece = occupants.SafeGetValue(src.X, src.Y);
-        var dstPiece = occupants.SafeGetValue(dst.X, dst.Y);
+        var srcPiece = Occupants.SafeGetValue(src.X, src.Y);
+        var dstPiece = Occupants.SafeGetValue(dst.X, dst.Y);
 
         if (srcPiece == null) throw new Exception("Chess piece not found");
 
@@ -85,8 +86,8 @@ public class Board
 
         if (!srcPiece.CheckValidMove(src, dst, this)) throw new Exception("Invalid Move");
 
-        occupants[src.X, src.Y] = null;
-        occupants[dst.X, dst.Y] = srcPiece;
+        Occupants[src.X, src.Y] = null;
+        Occupants[dst.X, dst.Y] = srcPiece;
 
         if (dstPiece is King)
         {
