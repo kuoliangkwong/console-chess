@@ -35,7 +35,7 @@ public class Game
 
     }
 
-    public void Move(string srcStr, string dstStr)
+    public string? Move(string srcStr, string dstStr)
     {
         if (!Input.IsValidString(srcStr, dstStr)) throw new Exception("Invalid input");
 
@@ -44,10 +44,15 @@ public class Game
 
         srcVector.Substract(1, 1);
         dstVector.Substract(1, 1);
-        board.Move(
+        if (board.Move(
+            CurrentTurn,
             srcVector,
             dstVector
-        );
+        ) != null)
+        {
+            return CurrentPlayerName;
+        };
+        return null;
     }
 
     public Color NextTurn()
