@@ -14,14 +14,6 @@ public class Game
         Reset();
     }
 
-    public string CurrentPlayerName 
-    {
-        get
-        {
-            return CurrentTurn.ToString();
-        }
-    }
-
     public Color CurrentTurn
     {
         get
@@ -36,7 +28,7 @@ public class Game
         turnIndex = 0;
     }
 
-    public string? Move(string srcStr, string dstStr)
+    public Color? Move(string srcStr, string dstStr)
     {
         if (!Input.IsValidString(srcStr, dstStr)) throw new Exception("Invalid input");
 
@@ -45,15 +37,12 @@ public class Game
 
         srcVector.Substract(1, 1);
         dstVector.Substract(1, 1);
-        if (board.Move(
+
+        return board.Move(
             CurrentTurn,
             srcVector,
             dstVector
-        ) != null)
-        {
-            return CurrentPlayerName;
-        };
-        return null;
+        );
     }
 
     public Color NextTurn()

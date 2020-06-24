@@ -9,7 +9,7 @@ class Program
         game.Reset();
         while (true)
         {
-            Console.WriteLine($"{game.CurrentPlayerName}'s turn");
+            Console.WriteLine($"\n{game.CurrentTurn}'s turn");
             Console.Write("Source: ");
             var src = Console.ReadLine();
             Console.Write("Destination: ");
