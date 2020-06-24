@@ -29,7 +29,7 @@ public class Board
     
     public void Reset()
     {
-
+        
     }
 
     public Color? Move(Color player, Vector2Int src, Vector2Int dst)
@@ -37,13 +37,7 @@ public class Board
         var srcPiece = occupants.SafeGetValue(src.X, src.Y);
         var dstPiece = occupants.SafeGetValue(dst.X, dst.Y);
 
-        if (srcPiece == null) throw new Exception("No chess piece found");
-
-        if (dst.X < 0 || dst.X > 7 || dst.Y < 0 || dst.Y > 7) throw new Exception("Destination is out of range");
-
         if (player != srcPiece.Color) throw new Exception("Cannot move opponent chess piece");
-
-        if (dstPiece != null && dstPiece.Color == srcPiece.Color) throw new Exception("Cannot move to same color chess piece");
 
         if (srcPiece.CheckValidMove(src, dst, this)) throw new Exception("Invalid Move");
 

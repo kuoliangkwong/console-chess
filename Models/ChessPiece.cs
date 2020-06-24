@@ -25,7 +25,10 @@ public abstract class ChessPiece: IChessRule
     protected ChessPiece(Color color)
     {
         this.Color = color;
-        moveRules = new List<IMoveRule>();
+        moveRules = new List<IMoveRule>
+        {
+            new GeneralRule()
+        };
         hasMoved = false;
     }
 
