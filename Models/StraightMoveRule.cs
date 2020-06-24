@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-class StraightMoveRule : IMoveRule
+public class StraightMoveRule : IMoveRule
 {
     readonly int maxStep = 0;
 
@@ -15,7 +15,7 @@ class StraightMoveRule : IMoveRule
     public bool IsValid(Vector2Int src, Vector2Int dst, Board _)
     {
         var isWithinMax = true;
-        var absVector = Vector2Int.Substract(src, dst).Abs();
+        var absVector = Vector2Int.Substract(dst, src).Abs();
         if (maxStep > 0) 
         {
             isWithinMax = absVector.ContainsValue(maxStep);

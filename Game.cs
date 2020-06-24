@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
-class Game
+public class Game
 {
     int turnIndex = 0;
     Board board;

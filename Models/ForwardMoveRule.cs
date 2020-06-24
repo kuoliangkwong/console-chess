@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-class ForwardMoveRule : IMoveRule
+public class ForwardMoveRule : IMoveRule
 {
     public bool IsValid(Vector2Int src, Vector2Int dst, Board board)
     {
-        var vector = Vector2Int.Substract(src, dst);
+        var vector = Vector2Int.Substract(dst, src);
         var srcPiece = board.Occupants.SafeGetValue(src);
-        var signY = vector.Y / Math.Abs(vector.Y);
 
         var valid = false;
-        var validDir = srcPiece.Forward == signY;
+        var validDir = srcPiece.Forward == vector.SignY;
         if (vector.Abs().Y == 2)
         {
             valid = validDir && !srcPiece.hasMoved;

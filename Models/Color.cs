@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-enum Color
+public enum Color
 {
     White, Black
 }

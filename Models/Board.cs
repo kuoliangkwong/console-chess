@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
-class Board
+public class Board
 {
     public readonly static Dictionary<char, int> CHAR_TO_INT = new Dictionary<char, int>()
     {

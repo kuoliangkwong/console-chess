@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-static class ArrayExt
+public static class ArrayExt
 {
     public static T SafeGetValue<T>(this T[,] array, Vector2Int p)
     {

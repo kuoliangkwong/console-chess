@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-abstract class ChessPiece: IChessRule
+public abstract class ChessPiece: IChessRule
 {
     public Color Color
     {
