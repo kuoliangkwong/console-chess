@@ -18,7 +18,7 @@ public class Game
     {
         get
         {
-            return CurrentTurn == Color.White ? "Player 1" : "Player 2";
+            return CurrentTurn.ToString();
         }
     }
 
