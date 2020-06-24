@@ -21,7 +21,7 @@ public class Input
     public static Vector2Int ToVector2(string src)
     {
         // Will add more checking here to prevent null or index-out-of-range crash
-        var charArr = src.ToCharArray();
+        var charArr = src.ToLower().ToCharArray();
         return new Vector2Int(
             Board.CHAR_TO_INT[charArr[0]], 
             int.Parse(charArr[1].ToString())
