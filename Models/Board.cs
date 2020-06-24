@@ -34,8 +34,8 @@ public class Board
             new Rook(Color.White),
             new Knight(Color.White),
             new Bishop(Color.White),
-            new King(Color.White),
             new Queen(Color.White),
+            new King(Color.White),
             new Bishop(Color.White),
             new Knight(Color.White),
             new Rook(Color.White)
@@ -56,8 +56,8 @@ public class Board
             new Rook(Color.Black),
             new Knight(Color.Black),
             new Bishop(Color.Black),
-            new King(Color.Black),
             new Queen(Color.Black),
+            new King(Color.Black),
             new Bishop(Color.Black),
             new Knight(Color.Black),
             new Rook(Color.Black)
@@ -79,10 +79,13 @@ public class Board
         var srcPiece = occupants.SafeGetValue(src.X, src.Y);
         var dstPiece = occupants.SafeGetValue(dst.X, dst.Y);
 
-        if (player != srcPiece.Color) throw new Exception("Cannot move opponent chess piece");
+        if (srcPiece == null) throw new Exception("Chess piece not found");
 
-        if (srcPiece.CheckValidMove(src, dst, this)) throw new Exception("Invalid Move");
+        if (srcPiece != null && player != srcPiece.Color) throw new Exception("Cannot move opponent chess piece");
 
+        if (!srcPiece.CheckValidMove(src, dst, this)) throw new Exception("Invalid Move");
+
+        occupants[src.X, src.Y] = null;
         occupants[dst.X, dst.Y] = srcPiece;
 
         if (dstPiece is King)
